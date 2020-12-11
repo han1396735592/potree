@@ -1,0 +1,109 @@
+{
+  "tb": {
+    "navigation_opt": "导航",
+    "rendering_opt": "外观",
+    "tools_opt": "工具",
+    "measurments_opt": "测量",
+    "clipping_opt": "裁剪",
+    "annotations_opt": "注释",
+    "materials_opt": "材料",
+    "scene_opt": "场景",
+    "classification_filter_opt": "分类过滤器",
+    "filters_opt": "过滤器",
+    "parameters_opt": "其他设置",
+    "about_opt": "关于"
+  },
+  "tt": {
+    "angle_measurement": "角度测量",
+    "point_measurement": "点测量",
+    "distance_measurement": "距离测量",
+    "height_measurement": "高度测量",
+    "circle_measurement": "圆测量",
+    "area_measurement": "面积测量",
+    "volume_measurement": "体积测量",
+    "height_profile": "高度剖面图",
+    "annotation": "注释",
+    "clip_volume": "体积修剪",
+    "clip_polygon": "多边形修剪",
+    "screen_clip_box": "绘制一个选择框。要求您处于正交相机模式！",
+    "clip_plane_x": "在x轴上剪裁平面",
+    "clip_plane_y": "在y轴上剪裁平面",
+    "clip_plane_z": "在z轴上剪裁平面",
+    "remove_all_measurement": "移除所有测量",
+    "left_view_control": "左视图",
+    "right_view_control": "右视图",
+    "front_view_control": "正视图",
+    "back_view_control": "后视图",
+    "top_view_control": "顶视图",
+    "bottom_view_control": "底视图",
+    "focus_control": "全范围",
+    "orbit_control": "轨道控制",
+    "flight_control": "飞行控制",
+    "heli_control": "直升机控制",
+    "earth_control": "地球控制",
+    "perspective_camera_control": "透视相机",
+    "orthographic_camera_control": "正交相机",
+    "navigation_cube_control": "Navigation cube",
+    "remove_all_clipping_volumes": "删除所有剪裁体积",
+    "compass": "指南针",
+    "camera_animation": "摄影机动画"
+  },
+  "appearance": {
+    "nb_max_pts": "Point budget",
+    "point_size": "点尺寸",
+    "min_point_size": "最小尺寸",
+    "point_opacity": "Opacity",
+    "field_view": "视野",
+    "point_size_type": "Point sizing",
+    "point_material": "材料",
+    "elevation_range": "仰角范围",
+    "extra_range": "标量范围",
+    "point_quality": "质量",
+    "point_shape": "形状",
+    "edl_radius": "半径",
+    "edl_strength": "强度",
+    "edl_opacity": "Opacity",
+    "edl_enable": "启动",
+    "min_node_size": "最小节点大小",
+    "clip_mode": "修剪模式",
+    "move_speed": "速度",
+    "skybox": "天空",
+    "bottom_lock": "保持在地面以上",
+    "box": "盒子",
+    "length_unit": "长度单位",
+    "freeze": "锁定视图",
+    "language": "语言",
+    "backface_culling": "背面剔除"
+  },
+  "measurements": {
+    "clip": "修剪",
+    "show": "显示体积"
+  },
+  "annotations": {
+    "show3D": "show in 3D",
+    "showMap": "show on map"
+  },
+  "profile": {
+    "nb_points": "点数量",
+    "title": "高度剖面图",
+    "save_las": "保存LAS（3D）",
+    "save_ortho": "保存CSV（2D）"
+  },
+  "scene": {
+    "camera_position": "摄像机位置",
+    "camera_target": "摄像机目标"
+  },
+  "filters": {
+    "return_number": "Return Number",
+    "number_of_returns": "Number of Returns",
+    "gps_min": "min",
+    "gps_max": "max",
+    "gps_time": "GPS Time"
+  },
+  "settings": {
+    "language": "语言"
+  }
+}
+
+
+

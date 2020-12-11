@@ -53,11 +53,11 @@ export class Sidebar{
 		this.initFilters();
 		this.initClippingTool();
 		this.initSettings();
-		
+
 		$('#potree_version_number').html(Potree.version.major + "." + Potree.version.minor + Potree.version.suffix);
 	}
 
-		
+
 
 	initToolbar(){
 
@@ -216,7 +216,7 @@ export class Sidebar{
 			Potree.resourcePath + '/icons/volume.svg',
 			'[title]tt.volume_measurement',
 			() => {
-				let volume = this.volumeTool.startInsertion(); 
+				let volume = this.volumeTool.startInsertion();
 
 				let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
 				let jsonNode = measurementsRoot.children.find(child => child.data.uuid === volume.uuid);
@@ -229,8 +229,8 @@ export class Sidebar{
 		elToolbar.append(this.createToolIcon(
 			Potree.resourcePath + '/icons/sphere_distances.svg',
 			'[title]tt.volume_measurement',
-			() => { 
-				let volume = this.volumeTool.startInsertion({type: SphereVolume}); 
+			() => {
+				let volume = this.volumeTool.startInsertion({type: SphereVolume});
 
 				let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
 				let jsonNode = measurementsRoot.children.find(child => child.data.uuid === volume.uuid);
@@ -298,7 +298,7 @@ export class Sidebar{
 		let elScene = $("#menu_scene");
 		let elObjects = elScene.next().find("#scene_objects");
 		let elProperties = elScene.next().find("#scene_object_properties");
-		
+
 
 		{
 			let elExport = elScene.next().find("#scene_export");
@@ -359,7 +359,7 @@ export class Sidebar{
 
 		let propertiesPanel = new PropertiesPanel(elProperties, this.viewer);
 		propertiesPanel.setScene(this.viewer.scene);
-		
+
 		localStorage.removeItem('jstree');
 
 		let tree = $(`<div id="jstree_scene"></div>`);
@@ -384,13 +384,13 @@ export class Sidebar{
 		});
 
 		let createNode = (parent, text, icon, object) => {
-			let nodeID = tree.jstree('create_node', parent, { 
-					"text": text, 
+			let nodeID = tree.jstree('create_node', parent, {
+					"text": text,
 					"icon": icon,
 					"data": object
-				}, 
+				},
 				"last", false, false);
-			
+
 			if(object.visible){
 				tree.jstree('check_node', nodeID);
 			}else{
@@ -400,12 +400,12 @@ export class Sidebar{
 			return nodeID;
 		}
 
-		let pcID = tree.jstree('create_node', "#", { "text": "<b>Point Clouds</b>", "id": "pointclouds"}, "last", false, false);
-		let measurementID = tree.jstree('create_node', "#", { "text": "<b>Measurements</b>", "id": "measurements" }, "last", false, false);
-		let annotationsID = tree.jstree('create_node', "#", { "text": "<b>Annotations</b>", "id": "annotations" }, "last", false, false);
-		let otherID = tree.jstree('create_node', "#", { "text": "<b>Other</b>", "id": "other" }, "last", false, false);
-		let vectorsID = tree.jstree('create_node', "#", { "text": "<b>Vectors</b>", "id": "vectors" }, "last", false, false);
-		let imagesID = tree.jstree('create_node', "#", { "text": "<b> Images</b>", "id": "images" }, "last", false, false);
+		let pcID = tree.jstree('create_node', "#", { "text": "<b>点云</b>", "id": "pointclouds"}, "last", false, false);
+		let measurementID = tree.jstree('create_node', "#", { "text": "<b>测量</b>", "id": "measurements" }, "last", false, false);
+		let annotationsID = tree.jstree('create_node', "#", { "text": "<b>注释</b>", "id": "annotations" }, "last", false, false);
+		let otherID = tree.jstree('create_node', "#", { "text": "<b>其他</b>", "id": "other" }, "last", false, false);
+		let vectorsID = tree.jstree('create_node', "#", { "text": "<b>向量</b>", "id": "vectors" }, "last", false, false);
+		let imagesID = tree.jstree('create_node', "#", { "text": "<b> 图片</b>", "id": "images" }, "last", false, false);
 
 		tree.jstree("check_node", pcID);
 		tree.jstree("check_node", measurementID);
@@ -472,7 +472,7 @@ export class Sidebar{
 					this.viewer.zoomTo(node, 1, 500);
 				}
 			}else if(object instanceof Volume){
-				
+
 				let box = object.boundingBox.clone().applyMatrix4(object.matrixWorld);
 
 				if(box.getSize(new THREE.Vector3()).length() > 0){
@@ -495,14 +495,14 @@ export class Sidebar{
 					target = new THREE.Vector3().addVectors(object.camera.position, dir);
 					this.viewer.setCameraMode(CameraMode.PERSPECTIVE);
 				}
-				
+
 				this.viewer.scene.view.position.copy(object.camera.position);
 				this.viewer.scene.view.lookAt(target);
 			}else if(object instanceof THREE.SpotLight){
 				let distance = (object.distance > 0) ? object.distance / 4 : 5 * 1000;
 				let position = object.position;
 				let target = new THREE.Vector3().addVectors(
-					position, 
+					position,
 					object.getWorldDirection(new THREE.Vector3()).multiplyScalar(distance));
 
 				this.viewer.scene.view.position.copy(object.position);
@@ -600,7 +600,7 @@ export class Sidebar{
 			annotation.addEventListener("annotation_changed", (e) => {
 				let annotationsRoot = $("#jstree_scene").jstree().get_json("annotations");
 				let jsonNode = annotationsRoot.children.find(child => child.data.uuid === annotation.uuid);
-				
+
 				$.jstree.reference(jsonNode.id).rename_node(jsonNode.id, annotation.title);
 			});
 		};
@@ -652,12 +652,12 @@ export class Sidebar{
 			for(const layer of geopackage.node.children){
 				const name = layer.name;
 
-				let shpPointsID = tree.jstree('create_node', parentNode, { 
-						"text": name, 
+				let shpPointsID = tree.jstree('create_node', parentNode, {
+						"text": name,
 						"icon": geopackageIcon,
 						"object": layer,
 						"data": layer,
-					}, 
+					},
 					"last", false, false);
 				tree.jstree(layer.visible ? "check_node" : "uncheck_node", shpPointsID);
 			}
@@ -678,28 +678,28 @@ export class Sidebar{
 		let onMeasurementRemoved = (e) => {
 			let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
 			let jsonNode = measurementsRoot.children.find(child => child.data.uuid === e.measurement.uuid);
-			
+
 			tree.jstree("delete_node", jsonNode.id);
 		};
 
 		let onVolumeRemoved = (e) => {
 			let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
 			let jsonNode = measurementsRoot.children.find(child => child.data.uuid === e.volume.uuid);
-			
+
 			tree.jstree("delete_node", jsonNode.id);
 		};
 
 		let onPolygonClipVolumeRemoved = (e) => {
 			let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
 			let jsonNode = measurementsRoot.children.find(child => child.data.uuid === e.volume.uuid);
-			
+
 			tree.jstree("delete_node", jsonNode.id);
 		};
 
 		let onProfileRemoved = (e) => {
 			let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
 			let jsonNode = measurementsRoot.children.find(child => child.data.uuid === e.profile.uuid);
-			
+
 			tree.jstree("delete_node", jsonNode.id);
 		};
 
@@ -710,7 +710,7 @@ export class Sidebar{
 
 		{
 			let annotationIcon = `${Potree.resourcePath}/icons/annotation.svg`;
-			this.annotationMapping = new Map(); 
+			this.annotationMapping = new Map();
 			this.annotationMapping.set(this.viewer.scene.annotations, annotationsID);
 			this.viewer.scene.annotations.traverseDescendants(annotation => {
 				let parentID = this.annotationMapping.get(annotation.parent);
@@ -820,7 +820,7 @@ export class Sidebar{
 			Potree.resourcePath + '/icons/clip_volume.svg',
 			'[title]tt.clip_volume',
 			() => {
-				let item = this.volumeTool.startInsertion({clip: true}); 
+				let item = this.volumeTool.startInsertion({clip: true});
 
 				let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
 				let jsonNode = measurementsRoot.children.find(child => child.data.uuid === item.uuid);
@@ -851,11 +851,11 @@ export class Sidebar{
 				"[title]tt.screen_clip_box",
 				() => {
 					if(!(this.viewer.scene.getActiveCamera() instanceof THREE.OrthographicCamera)){
-						this.viewer.postMessage(`Switch to Orthographic Camera Mode before using the Screen-Box-Select tool.`, 
+						this.viewer.postMessage(`Switch to Orthographic Camera Mode before using the Screen-Box-Select tool.`,
 							{duration: 2000});
 						return;
 					}
-					
+
 					let item = boxSelectTool.startInsertion();
 
 					let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
@@ -956,7 +956,7 @@ export class Sidebar{
 			let initialized = false;
 
 			let initialize = () => {
-				
+
 				let elRangeContainer = $("#gpstime_multilevel_range_container");
 				elRangeContainer[0].prepend(slider.element);
 
@@ -983,7 +983,7 @@ export class Sidebar{
 
 
 		{
-			
+
 			const txtGpsTime = elGPSTimeFilterPanel.find("#txtGpsTime");
 			const btnFindGpsTime = elGPSTimeFilterPanel.find("#btnFindGpsTime");
 
@@ -1006,7 +1006,7 @@ export class Sidebar{
 			});
 
 			btnFindGpsTime.click( () => {
-				
+
 				if(targetTime !== null){
 					viewer.moveToGpsTimeVicinity(targetTime);
 				}
@@ -1045,7 +1045,7 @@ export class Sidebar{
 
 					slider.setValues(extent);
 				}
-				
+
 			});
 		}
 
@@ -1154,7 +1154,7 @@ export class Sidebar{
 			elClassificationList.append(element);
 		}
 
-		const addInvertButton = () => { 
+		const addInvertButton = () => {
 			const element = $(`
 				<li>
 					<input type="button" value="invert" />
@@ -1165,7 +1165,7 @@ export class Sidebar{
 
 			elInput.click( () => {
 				const classifications = this.viewer.classifications;
-	
+
 				for(let key of Object.keys(classifications)){
 					let value = classifications[key];
 					this.viewer.setClassificationVisibility(key, !value.visible);
@@ -1251,11 +1251,11 @@ export class Sidebar{
 			if(i === 0){
 				element.css("margin-left", "30px");
 			}
-			
+
 			elLanguages.append(element);
 
 			if(i < languages.length - 1){
-				elLanguages.append($(document.createTextNode(' - ')));	
+				elLanguages.append($(document.createTextNode(' - ')));
 			}
 		}
 
@@ -1344,7 +1344,7 @@ export class Sidebar{
 		$('#lblEDLRadius')[0].innerHTML = this.viewer.getEDLRadius().toFixed(1);
 		$('#lblEDLStrength')[0].innerHTML = this.viewer.getEDLStrength().toFixed(1);
 		$('#chkEDLEnabled')[0].checked = this.viewer.getEDLEnabled();
-		
+
 		{
 			let elBackground = $(`#background_options`);
 			elBackground.selectgroup();
@@ -1385,7 +1385,7 @@ export class Sidebar{
 		elNavigation.append(this.createToolIcon(
 			Potree.resourcePath + '/icons/helicopter_controls.svg',
 			'[title]tt.heli_control',
-			() => { 
+			() => {
 				this.viewer.setControls(this.viewer.fpControls);
 				this.viewer.fpControls.lockElevation = true;
 			}
