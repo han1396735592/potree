@@ -1,7 +1,7 @@
 
 import {GeoJSONExporter} from "../exporter/GeoJSONExporter.js"
 import {DXFExporter} from "../exporter/DXFExporter.js"
-import {Volume, SphereVolume} from "../utils/Volume.js"
+import {Volume, SphereVolume,CylinderVolume} from "../utils/Volume.js"
 import {PolygonClipVolume} from "../utils/PolygonClipVolume.js"
 import {PropertiesPanel} from "./PropertyPanels/PropertiesPanel.js"
 import {PointCloudTree} from "../PointCloudTree.js"
@@ -231,6 +231,20 @@ export class Sidebar{
 			'[title]tt.volume_measurement',
 			() => {
 				let volume = this.volumeTool.startInsertion({type: SphereVolume});
+
+				let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
+				let jsonNode = measurementsRoot.children.find(child => child.data.uuid === volume.uuid);
+				$.jstree.reference(jsonNode.id).deselect_all();
+				$.jstree.reference(jsonNode.id).select_node(jsonNode.id);
+			}
+		));
+
+		// SPHERE VOLUME
+		elToolbar.append(this.createToolIcon(
+			Potree.resourcePath + '/icons/sphere_distances.svg',
+			'[title]tt.volume_measurement',
+			() => {
+				let volume = this.volumeTool.startInsertion({type: CylinderVolume});
 
 				let measurementsRoot = $("#jstree_scene").jstree().get_json("measurements");
 				let jsonNode = measurementsRoot.children.find(child => child.data.uuid === volume.uuid);

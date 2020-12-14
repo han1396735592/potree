@@ -1,6 +1,6 @@
 
 import {Utils} from "../../utils.js";
-import {Volume, BoxVolume, SphereVolume} from "../../utils/Volume.js";
+import {Volume, BoxVolume, SphereVolume,CylinderVolume} from "../../utils/Volume.js";
 
 import {MeasurePanel} from "./MeasurePanel.js";
 
@@ -14,16 +14,19 @@ export class VolumePanel extends MeasurePanel{
 		let lblLengthText = new Map([
 			[BoxVolume, "length"],
 			[SphereVolume, "rx"],
+			[CylinderVolume, "rx"],
 		]).get(measurement.constructor);
 
 		let lblWidthText = new Map([
 			[BoxVolume, "width"],
 			[SphereVolume, "ry"],
+			[CylinderVolume, "height"],
 		]).get(measurement.constructor);
 
 		let lblHeightText = new Map([
 			[BoxVolume, "height"],
 			[SphereVolume, "rz"],
+			[CylinderVolume, "ry"],
 		]).get(measurement.constructor);
 
 		this.elContent = $(`
@@ -247,7 +250,7 @@ export class VolumePanel extends MeasurePanel{
 		let handle = null;
 		{ // START FILTER
 			let url = `${viewer.server}/create_regions_filter?pointclouds=[${pointcloudsArg}]&regions=[${regionsArg}]`;
-			
+
 			//console.log(url);
 
 			info("estimating results ...");
