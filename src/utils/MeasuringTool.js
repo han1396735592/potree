@@ -20,7 +20,7 @@ function updateAzimuth(viewer, measure){
 	const renderAreaSize = viewer.renderer.getSize(new THREE.Vector2());
 	const width = renderAreaSize.width;
 	const height = renderAreaSize.height;
-	
+
 	const [p0, p1] = measure.points;
 	const r = p0.position.distanceTo(p1.position);
 	const northVec = Utils.getNorthVec(p0.position, r, viewer.getProjection());
@@ -28,7 +28,7 @@ function updateAzimuth(viewer, measure){
 
 	azimuth.center.position.copy(p0.position);
 	azimuth.center.scale.set(2, 2, 2);
-	
+
 	azimuth.center.visible = false;
 	// azimuth.target.visible = false;
 
@@ -168,7 +168,7 @@ export class MeasuringTool extends EventDispatcher{
 	startInsertion (args = {}) {
 		let domElement = this.viewer.renderer.domElement;
 
-		let measure = new Measure();
+		let measure = new Measure(args.type);
 
 		this.dispatchEvent({
 			type: 'start_inserting_measurement',
@@ -194,8 +194,6 @@ export class MeasuringTool extends EventDispatcher{
 		measure.showEdges = pick(args.showEdges, true);
 		measure.closed = pick(args.closed, false);
 		measure.maxMarkers = pick(args.maxMarkers, Infinity);
-
-		measure.name = args.name || 'Measurement';
 
 		this.scene.add(measure);
 
@@ -240,7 +238,7 @@ export class MeasuringTool extends EventDispatcher{
 
 		return measure;
 	}
-	
+
 	update(){
 		let camera = this.viewer.scene.getActiveCamera();
 		let domElement = this.renderer.domElement;
@@ -295,9 +293,9 @@ export class MeasuringTool extends EventDispatcher{
 				screenPos.z = 0;
 				screenPos.y -= 30;
 
-				let labelPos = new THREE.Vector3( 
-					(screenPos.x / clientWidth) * 2 - 1, 
-					-(screenPos.y / clientHeight) * 2 + 1, 
+				let labelPos = new THREE.Vector3(
+					(screenPos.x / clientWidth) * 2 - 1,
+					-(screenPos.y / clientHeight) * 2 + 1,
 					0.5 );
 				labelPos.unproject(camera);
 				if(this.viewer.scene.cameraMode == CameraMode.PERSPECTIVE) {
@@ -397,9 +395,9 @@ export class MeasuringTool extends EventDispatcher{
 			if(!this.showLabels){
 
 				const labels = [
-					...measure.sphereLabels, 
-					...measure.edgeLabels, 
-					...measure.angleLabels, 
+					...measure.sphereLabels,
+					...measure.edgeLabels,
+					...measure.angleLabels,
 					...measure.coordinateLabels,
 					measure.heightLabel,
 					measure.areaLabel,
