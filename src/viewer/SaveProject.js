@@ -1,11 +1,11 @@
 
 
-function createPointcloudData(pointcloud) {
+export function createPointcloudData(pointcloud) {
 
 	let material = pointcloud.material;
 
 	let ranges = [];
-	
+
 	for(let [name, value] of material.ranges){
 		ranges.push({
 			name: name,
@@ -49,7 +49,7 @@ function createPointcloudData(pointcloud) {
 	return pcdata;
 }
 
-function createProfileData(profile){
+export function createProfileData(profile){
 	const data = {
 		uuid: profile.uuid,
 		name: profile.name,
@@ -61,7 +61,7 @@ function createProfileData(profile){
 	return data;
 }
 
-function createVolumeData(volume){
+export function createVolumeData(volume){
 	const data = {
 		uuid: volume.uuid,
 		type: volume.constructor.name,
@@ -76,7 +76,7 @@ function createVolumeData(volume){
 	return data;
 }
 
-function createCameraAnimationData(animation){
+export function createCameraAnimationData(animation){
 
 	const controlPoints = animation.controlPoints.map( cp => {
 		const cpdata = {
@@ -100,7 +100,7 @@ function createCameraAnimationData(animation){
 	return data;
 }
 
-function createMeasurementData(measurement){
+export function createMeasurementData(measurement){
 
 	const data = {
 		uuid: measurement.uuid,
@@ -121,7 +121,7 @@ function createMeasurementData(measurement){
 	return data;
 }
 
-function createOrientedImagesData(images){
+export function createOrientedImagesData(images){
 	const data = {
 		cameraParamsPath: images.cameraParamsPath,
 		imageParamsPath: images.imageParamsPath,
@@ -130,7 +130,7 @@ function createOrientedImagesData(images){
 	return data;
 }
 
-function createGeopackageData(geopackage){
+export function createGeopackageData(geopackage){
 	const data = {
 		path: geopackage.path,
 	};
@@ -138,7 +138,7 @@ function createGeopackageData(geopackage){
 	return data;
 }
 
-function createAnnotationData(annotation){
+export function createAnnotationData(annotation){
 
 	const data = {
 		uuid: annotation.uuid,
@@ -164,8 +164,8 @@ function createAnnotationData(annotation){
 	return data;
 }
 
-function createAnnotationsData(viewer){
-	
+export function createAnnotationsData(viewer){
+
 	const map = new Map();
 
 	viewer.scene.annotations.traverseDescendants(a => {
@@ -186,7 +186,7 @@ function createAnnotationsData(viewer){
 	return annotations;
 }
 
-function createSettingsData(viewer){
+export function createSettingsData(viewer){
 	return {
 		pointBudget: viewer.getPointBudget(),
 		fov: viewer.getFOV(),
@@ -199,7 +199,7 @@ function createSettingsData(viewer){
 	};
 }
 
-function createSceneContentData(viewer){
+export function createSceneContentData(viewer){
 
 	const data = [];
 
@@ -212,7 +212,7 @@ function createSceneContentData(viewer){
 	});
 
 	for(const object of potreeObjects){
-		
+
 		if(object.potree.file){
 			const saveObject = {
 				file: object.potree.file,
@@ -228,7 +228,7 @@ function createSceneContentData(viewer){
 	return data;
 }
 
-function createViewData(viewer){
+export function createViewData(viewer){
 	const view = viewer.scene.view;
 
 	const data = {
@@ -239,7 +239,7 @@ function createViewData(viewer){
 	return data;
 }
 
-function createClassificationData(viewer){
+export function createClassificationData(viewer){
 	const classifications = viewer.classifications;
 
 	const data = classifications;

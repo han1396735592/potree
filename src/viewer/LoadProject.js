@@ -6,7 +6,7 @@ import {CameraAnimation} from "../modules/CameraAnimation/CameraAnimation.js";
 import {Utils} from "../utils.js";
 import {PointSizeType} from "../defines.js";
 
-function loadPointCloud(viewer, data){
+export function loadPointCloud(viewer, data){
 
 	let loadMaterial = (target) => {
 
@@ -82,7 +82,7 @@ function loadPointCloud(viewer, data){
 	return promise;
 }
 
-function loadMeasurement(viewer, data){
+export function loadMeasurement(viewer, data){
 
 	const duplicate = viewer.scene.measurements.find(measure => measure.uuid === data.uuid);
 	if(duplicate){
@@ -113,7 +113,7 @@ function loadMeasurement(viewer, data){
 
 }
 
-function loadVolume(viewer, data){
+export function loadVolume(viewer, data){
 
 	const duplicate = viewer.scene.volumes.find(volume => volume.uuid === data.uuid);
 	if(duplicate){
@@ -133,7 +133,7 @@ function loadVolume(viewer, data){
 	viewer.scene.addVolume(volume);
 }
 
-function loadCameraAnimation(viewer, data){
+export function loadCameraAnimation(viewer, data){
 
 	const duplicate = viewer.scene.cameraAnimations.find(a => a.uuid === data.uuid);
 	if(duplicate){
@@ -160,7 +160,7 @@ function loadCameraAnimation(viewer, data){
 	viewer.scene.addCameraAnimation(animation);
 }
 
-function loadOrientedImages(viewer, images){
+export function loadOrientedImages(viewer, images){
 
 	const {cameraParamsPath, imageParamsPath} = images;
 
@@ -175,7 +175,7 @@ function loadOrientedImages(viewer, images){
 
 }
 
-function loadGeopackage(viewer, geopackage){
+export function loadGeopackage(viewer, geopackage){
 
 	const path = geopackage.path;
 
@@ -196,11 +196,11 @@ function loadGeopackage(viewer, geopackage){
 	Potree.GeoPackageLoader.loadUrl(path, params).then(data => {
 		viewer.scene.addGeopackage(data);
 	});
-	
+
 
 }
 
-function loadSettings(viewer, data){
+export function loadSettings(viewer, data){
 	if(!data){
 		return;
 	}
@@ -215,12 +215,12 @@ function loadSettings(viewer, data){
 	viewer.setShowBoundingBox(data.showBoundingBoxes);
 }
 
-function loadView(viewer, view){
+export function loadView(viewer, view){
 	viewer.scene.view.position.set(...view.position);
 	viewer.scene.view.lookAt(...view.target);
 }
 
-function loadAnnotationItem(item){
+export function loadAnnotationItem(item){
 
 	const annotation = new Annotation({
 		position: item.position,
@@ -240,7 +240,7 @@ function loadAnnotationItem(item){
 	return annotation;
 }
 
-function loadAnnotations(viewer, data){
+export function loadAnnotations(viewer, data){
 
 	if(!data){
 		return;
@@ -282,8 +282,8 @@ function loadAnnotations(viewer, data){
 
 }
 
-function loadProfile(viewer, data){
-	
+export function loadProfile(viewer, data){
+
 	const {name, points} = data;
 
 	const duplicate = viewer.scene.profiles.find(profile => profile.uuid === data.uuid);
@@ -300,11 +300,11 @@ function loadProfile(viewer, data){
 	for(const point of points){
 		profile.addMarker(new THREE.Vector3(...point));
 	}
-	
+
 	viewer.scene.addProfile(profile);
 }
 
-function loadClassification(viewer, data){
+export function loadClassification(viewer, data){
 	if(!data){
 		return;
 	}

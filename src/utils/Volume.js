@@ -294,8 +294,10 @@ export class SphereVolume extends Volume {
         this.frame = new THREE.LineSegments(frameGeometry, new THREE.LineBasicMaterial({color: 0x000000}));
         this.add(this.frame);
 
-        let frameMaterial = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000});
-        this.frame = new THREE.Mesh(sphereGeometry, frameMaterial);
+        this.frame.visible=false
+
+        // let frameMaterial = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000});
+        // this.frame = new THREE.Mesh(sphereGeometry, frameMaterial);
         //this.add(this.frame);
 
         //this.frame = new THREE.LineSegments(boxFrameGeometry, new THREE.LineBasicMaterial({color: 0x000000}));
@@ -309,13 +311,15 @@ export class SphereVolume extends Volume {
         this.boundingBox = this.sphere.geometry.boundingBox;
         this.boundingSphere = this.boundingBox.getBoundingSphere(new THREE.Sphere());
 
-        //if (this._clip) {
-        //	this.sphere.visible = false;
-        //	this.label.visible = false;
-        //} else {
-        //	this.sphere.visible = true;
-        //	this.label.visible = this.showVolumeLabel;
-        //}
+        if (this._clip) {
+        	this.sphere.visible = false;
+        	this.label.visible = false;
+            this.frame.visible=true
+        } else {
+        	this.sphere.visible = true;
+        	this.label.visible = this.showVolumeLabel;
+            this.frame.visible=false
+        }
     }
 
     raycast(raycaster, intersects) {
