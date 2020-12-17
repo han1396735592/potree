@@ -1249,11 +1249,11 @@ export class Sidebar{
 
 		let languages = [
 			["EN", "en"],
-			["FR", "fr"],
-			["DE", "de"],
-			["JP", "jp"],
-			["ES", "es"],
-			["SE", "se"]
+			// ["FR", "fr"],
+			// ["DE", "de"],
+			// ["JP", "jp"],
+			// ["ES", "es"],
+			["ZH", "zh"]
 		];
 
 		let elLanguages = $('#potree_languages');

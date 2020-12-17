@@ -68,7 +68,7 @@ export class VolumePanel extends MeasurePanel{
 				</table>
 
 				<br>
-				<span style="font-weight: bold">Volume: </span>
+				<span style="font-weight: bold">体积: </span>
 				<span id="measurement_volume"></span>
 
 				<!--

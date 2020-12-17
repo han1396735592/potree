@@ -294,7 +294,7 @@ export class SphereVolume extends Volume {
         this.frame = new THREE.LineSegments(frameGeometry, new THREE.LineBasicMaterial({color: 0x000000}));
         this.add(this.frame);
 
-        this.frame.visible=false
+        this.frame.visible = false
 
         // let frameMaterial = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000});
         // this.frame = new THREE.Mesh(sphereGeometry, frameMaterial);
@@ -312,13 +312,13 @@ export class SphereVolume extends Volume {
         this.boundingSphere = this.boundingBox.getBoundingSphere(new THREE.Sphere());
 
         if (this._clip) {
-        	this.sphere.visible = false;
-        	this.label.visible = false;
-            this.frame.visible=true
+            this.sphere.visible = false;
+            this.label.visible = false;
+            this.frame.visible = true
         } else {
-        	this.sphere.visible = true;
-        	this.label.visible = this.showVolumeLabel;
-            this.frame.visible=false
+            this.sphere.visible = true;
+            this.label.visible = this.showVolumeLabel;
+            this.frame.visible = false
         }
     }
 
@@ -363,6 +363,9 @@ export class CylinderVolume extends Volume {
             depthWrite: false
         });
         this.sphere = new THREE.Mesh(cylinderGeometry, this.material);
+
+        this.rotation.x = Math.PI / 2
+
         this.sphere.visible = true;
         this.sphere.geometry.computeBoundingBox();
         this.boundingBox = this.sphere.geometry.boundingBox;
@@ -436,13 +439,10 @@ export class CylinderVolume extends Volume {
         // this.frame = new THREE.LineSegments(frameGeometry, new THREE.LineBasicMaterial({color: 0x000000}));
         // this.add(this.frame);
         //
-        // let frameMaterial = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000});
-        // this.frame = new THREE.Mesh(cylinderGeometry, frameMaterial);
-        //this.add(this.frame);
+        let frameMaterial = new THREE.MeshBasicMaterial({wireframe: true, color: 0x000000});
+        this.frame = new THREE.Mesh(cylinderGeometry, frameMaterial);
+        this.add(this.frame);
 
-        //this.frame = new THREE.LineSegments(boxFrameGeometry, new THREE.LineBasicMaterial({color: 0x000000}));
-        // this.frame.mode = THREE.Lines;
-        //this.add(this.frame);
 
         this.update();
     }
@@ -451,13 +451,13 @@ export class CylinderVolume extends Volume {
         this.boundingBox = this.sphere.geometry.boundingBox;
         this.boundingSphere = this.boundingBox.getBoundingSphere(new THREE.Sphere());
 
-        //if (this._clip) {
-        //	this.sphere.visible = false;
-        //	this.label.visible = false;
-        //} else {
-        //	this.sphere.visible = true;
-        //	this.label.visible = this.showVolumeLabel;
-        //}
+        if (this._clip) {
+        	this.sphere.visible = false;
+        	this.label.visible = false;
+        } else {
+        	this.sphere.visible = true;
+        	this.label.visible = this.showVolumeLabel;
+        }
     }
 
     raycast(raycaster, intersects) {
