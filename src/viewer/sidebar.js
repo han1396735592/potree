@@ -295,7 +295,7 @@ export class Sidebar{
 
 		{ // SHOW / HIDE Measurements
 			let elShow = $("#measurement_options_show");
-			elShow.selectgroup({title: "Show/Hide labels"});
+			elShow.selectgroup({title: "显示/隐藏 标签"});
 
 			elShow.find("input").click( (e) => {
 				const show = e.target.value === "SHOW";
@@ -816,7 +816,7 @@ export class Sidebar{
 
 		{
 			let elClipMethod = $("#clipmethod_options");
-			elClipMethod.selectgroup({title: "Clip Method"});
+			elClipMethod.selectgroup({title: "剪辑方法"});
 
 			elClipMethod.find("input").click( (e) => {
 				this.viewer.setClipMethod(ClipMethod[e.target.value]);
@@ -1248,12 +1248,13 @@ export class Sidebar{
 		});
 
 		let languages = [
-			["EN", "en"],
+			["ZH", "zh"],
+			["EN", "en"]
 			// ["FR", "fr"],
 			// ["DE", "de"],
 			// ["JP", "jp"],
 			// ["ES", "es"],
-			["ZH", "zh"]
+
 		];
 
 		let elLanguages = $('#potree_languages');

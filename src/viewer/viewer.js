@@ -1153,9 +1153,9 @@ export class Viewer extends EventDispatcher{
 			this.mapView.init();
 
 			i18n.init({
-				lng: 'en',
+				lng: 'zh',
 				resGetPath: Potree.resourcePath + '/lang/__lng__/__ns__.json',
-				preload: ['en', 'fr', 'de', 'jp', 'se', 'es'],
+				preload: ['en','zh'],
 				getAsync: true,
 				debug: false
 			}, function (t) {
@@ -1287,7 +1287,7 @@ export class Viewer extends EventDispatcher{
 
 	initThree () {
 
-		console.log(`initializing three.js ${THREE.REVISION}`);
+		console.debug(`initializing three.js ${THREE.REVISION}`);
 
 		let width = this.renderArea.clientWidth;
 		let height = this.renderArea.clientHeight;
@@ -1367,8 +1367,7 @@ export class Viewer extends EventDispatcher{
 	async prepareVR(){
 
 		if(!navigator.getVRDisplays){
-			console.info("browser does not support WebVR");
-
+			console.warn("browser does not support WebVR");
 			return false;
 		}
 

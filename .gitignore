@@ -32,3 +32,5 @@ libs/CesiumUnminified
 /pointclouds/helimap_epalinges
 pointclouds/F
 /.idea/
+/yarn.lock
+/yarn-error.log
