@@ -198,7 +198,7 @@ export class Viewer extends EventDispatcher{
 			this.clippingTool = new ClippingTool(this);
 			this.transformationTool = new TransformationTool(this);
 			this.navigationCube = new NavigationCube(this);
-			this.navigationCube.visible = true;
+			this.navigationCube.visible = false;
 
 			this.compass = new Compass(this);
 
