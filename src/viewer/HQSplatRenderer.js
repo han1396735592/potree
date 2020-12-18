@@ -4,12 +4,12 @@ import {NormalizationMaterial} from "../materials/NormalizationMaterial.js";
 import {NormalizationEDLMaterial} from "../materials/NormalizationEDLMaterial.js";
 import {PointCloudMaterial} from "../materials/PointCloudMaterial.js";
 import {PointShape} from "../defines.js";
-import {SphereVolume} from "../utils/Volume.js";
+import {SphereVolume,BoxVolume} from "../utils/Volume.js";
 import {Utils} from "../utils.js";
 
 
 export class HQSplatRenderer{
-	
+
 	constructor(viewer){
 		this.viewer = viewer;
 
@@ -171,9 +171,9 @@ export class HQSplatRenderer{
 
 				pointcloud.material = depthMaterial;
 			}
-			
+
 			viewer.pRenderer.render(viewer.scene.scenePointCloud, camera, this.rtDepth, {
-				clipSpheres: viewer.scene.volumes.filter(v => (v instanceof SphereVolume)),
+				clipSpheres: viewer.scene.volumes.filter(v => !(v instanceof BoxVolume)),
 			});
 		}
 
@@ -238,12 +238,12 @@ export class HQSplatRenderer{
 
 				pointcloud.material = attributeMaterial;
 			}
-			
+
 			let gl = this.gl;
 
 			viewer.renderer.setRenderTarget(null);
 			viewer.pRenderer.render(viewer.scene.scenePointCloud, camera, this.rtAttribute, {
-				clipSpheres: viewer.scene.volumes.filter(v => (v instanceof SphereVolume)),
+				clipSpheres: viewer.scene.volumes.filter(v => !(v instanceof BoxVolume)),
 				//material: this.attributeMaterial,
 				blendFunc: [gl.SRC_ALPHA, gl.ONE],
 				//depthTest: false,
@@ -292,7 +292,7 @@ export class HQSplatRenderer{
 
 			normalizationMaterial.uniforms.uWeightMap.value = this.rtAttribute.texture;
 			normalizationMaterial.uniforms.uDepthMap.value = this.rtAttribute.depthTexture;
-			
+
 			Utils.screenPass.render(viewer.renderer, normalizationMaterial);
 		}
 
@@ -310,12 +310,12 @@ export class HQSplatRenderer{
 		viewer.renderer.render(viewer.clippingTool.sceneVolume, camera);
 		viewer.renderer.render(viewer.transformationTool.scene, camera);
 
-		viewer.renderer.setViewport(width - viewer.navigationCube.width, 
-									height - viewer.navigationCube.width, 
+		viewer.renderer.setViewport(width - viewer.navigationCube.width,
+									height - viewer.navigationCube.width,
 									viewer.navigationCube.width, viewer.navigationCube.width);
-		viewer.renderer.render(viewer.navigationCube, viewer.navigationCube.camera);		
+		viewer.renderer.render(viewer.navigationCube, viewer.navigationCube.camera);
 		viewer.renderer.setViewport(0, 0, width, height);
-		
+
 		viewer.dispatchEvent({type: "render.pass.end",viewer: viewer});
 
 	}
