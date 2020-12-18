@@ -1,7 +1,7 @@
 
 import {PointCloudSM} from "../utils/PointCloudSM.js";
 import {EyeDomeLightingMaterial} from "../materials/EyeDomeLightingMaterial.js";
-import {SphereVolume} from "../utils/Volume.js";
+import {SphereVolume,BoxVolume} from "../utils/Volume.js";
 import {Utils} from "../utils.js";
 
 export class EDLRenderer{
@@ -247,13 +247,13 @@ export class EDLRenderer{
 
 			if(lights.length > 0){
 				viewer.pRenderer.render(viewer.scene.scenePointCloud, camera, this.rtEDL, {
-					clipSpheres: viewer.scene.volumes.filter(v => (v instanceof SphereVolume)),
+					clipSpheres: viewer.scene.volumes.filter(v => !(v instanceof BoxVolume)),
 					shadowMaps: [this.shadowMap],
 					transparent: false,
 				});
 			}else{
 				viewer.pRenderer.render(viewer.scene.scenePointCloud, camera, this.rtEDL, {
-					clipSpheres: viewer.scene.volumes.filter(v => (v instanceof SphereVolume)),
+					clipSpheres: viewer.scene.volumes.filter(v => !(v instanceof BoxVolume)),
 					transparent: false,
 				});
 			}

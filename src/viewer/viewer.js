@@ -280,35 +280,35 @@ export class Viewer extends EventDispatcher{
 			let elFailPage = $(`
 			<div id="#potree_failpage" class="potree_failpage"> 
 				
-				<h1>Potree Encountered An Error </h1>
+				<h1>显示遇到错误</h1>
 
 				<p>
-				This may happen if your browser or graphics card is not supported.
+				如果不支持您的浏览器或图形卡，则可能会发生这种情况
 				<br>
-				We recommend to use 
+				我们建议使用
 				<a href="https://www.google.com/chrome/browser" target="_blank" style="color:initial">Chrome</a>
-				or 
+				或者
 				<a href="https://www.mozilla.org/" target="_blank">Firefox</a>.
 				</p>
 
 				<p>
-				Please also visit <a href="http://webglreport.com/" target="_blank">webglreport.com</a> and 
-				check whether your system supports WebGL.
+				也请访问 <a href="http://webglreport.com/" target="_blank">webglreport.com</a> 
+				检查您的系统是否支持WebGL。
 				</p>
-				<p>
-				If you are already using one of the recommended browsers and WebGL is enabled, 
-				consider filing an issue report at <a href="https://github.com/potree/potree/issues" target="_blank">github</a>,<br>
-				including your operating system, graphics card, browser and browser version, as well as the 
-				error message below.<br>
-				Please do not report errors on unsupported browsers.
-				</p>
+<!--				<p>-->
+<!--				If you are already using one of the recommended browsers and WebGL is enabled, -->
+<!--				consider filing an issue report at <a href="https://github.com/potree/potree/issues" target="_blank">github</a>,<br>-->
+<!--				including your operating system, graphics card, browser and browser version, as well as the -->
+<!--				error message below.<br>-->
+<!--				Please do not report errors on unsupported browsers.-->
+<!--				</p>-->
 
-				<pre id="potree_error_console" style="width: 100%; height: 100%"></pre>
+<!--				<pre id="potree_error_console" style="width: 100%; height: 100%"></pre>-->
 				
 			</div>`);
 
-			let elErrorMessage = elFailPage.find('#potree_error_console');
-			elErrorMessage.html(error.stack);
+			// let elErrorMessage = elFailPage.find('#potree_error_console');
+			// elErrorMessage.html(error.stack);
 
 			$(this.renderArea).append(elFailPage);
 		}
